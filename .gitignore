@@ -6,8 +6,6 @@
 
 # Ignore folders
 archive
-lib
-library
 stimuli
 sub-*
 simulations
