@@ -1,0 +1,13 @@
+.DS_Store
+
+# Ignore wav files and figures (.png)
+*.wav
+*.png
+
+# Ignore folders
+archive
+lib
+library
+stimuli
+sub-*
+simulations
