@@ -1,0 +1,161 @@
+---
+title: "Rhototype 2ioi "
+author: "Tomas Lenc"
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
+output:
+  html_document: 
+    code_folding: hide
+    toc: true
+    toc_float: 
+      collapsed: false
+    toc_depth: 5
+
+---
+
+```{css, echo=FALSE}
+h1, h2, h3, h4 {
+  text-align: center;
+}
+
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+source('config.R')
+source('utils.R')
+
+```
+
+
+
+
+
+<br><br><br>
+
+# Response: low frequency 
+
+```{r}
+response_str <- 'response-lf'
+
+templ_fname <- 'lf_chunk_templ.Rmd'
+```
+
+---
+
+
+
+<br><br><br><br><br><br>
+
+## SNR: none
+
+```{r}
+snr_str <- 'concatEp-false_snr-none'
+```
+
+
+
+<br><br>
+
+### ROI: frontocentral (averaged)
+
+Here, we averaged the responses across 9 frontocentral channels in the time domain (equivalent to averaging the complex DFT) 
+before computing the RDM.   
+
+The channels are: 
+    'F1'
+    'Fz'
+    'F2'
+    'FC1'
+    'FCz'
+    'FC2'
+    'C1'
+    'Cz'
+    'C2'
+
+<br> 
+
+```{r include=FALSE}
+roi_str <- 'roi-front_avgChans-true'
+```
+
+
+```{r}
+
+out = NULL
+
+fig_fname_stems <- c('feat-ampSum_topo', 
+                     'mX', 
+                     'feat-X_method-pearson_nCateg-2_perm', 
+                     'feat-X_method-pearson_nCateg-2-3_perm')
+
+output_sizes_prc <- c(100, 40, 60, 60)
+
+out <- knit_templ_over_subjects_summary(subjects,
+                                        templ_fname, 
+                                        out, 
+                                        fig_fname_stems=fig_fname_stems, 
+                                        output_sizes_prc=output_sizes_prc)
+
+
+```
+
+`r paste(knitr::knit(text=out), collapse='\n')`
+
+
+
+
+---
+
+<br><br>
+
+### ROI: all (not averaged)
+
+```{r include=FALSE}
+roi_str <- 'roi-all_avgChans-false'
+```
+
+
+```{r}
+
+out = NULL
+
+fig_fname_stems <- c('feat-ampSum_topo', 
+                     'mX', 
+                     'feat-X_method-pearson_nCateg-2_perm', 
+                     'feat-X_method-pearson_nCateg-2-3_perm')
+
+output_sizes_prc <- c(100, 40, 60, 60)
+
+out <- knit_templ_over_subjects_summary(subjects,
+                                        templ_fname, 
+                                        out, 
+                                        fig_fname_stems=fig_fname_stems, 
+                                        output_sizes_prc=output_sizes_prc)
+
+
+```
+
+`r paste(knitr::knit(text=out), collapse='\n')`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
